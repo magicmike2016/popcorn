@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catálogo</title>
+</head>
+<body>
+    <h1>Catálogo de Películas</h1>
+    <ul>
+        {% for pelicula in peliculas %}
+            <li>{{ pelicula.title }} - {{ pelicula.year }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

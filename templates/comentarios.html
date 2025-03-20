@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Comentarios para {{ pelicula.title }}{% endblock %}
+{% block content %}
+<h2>Comentarios sobre "{{ pelicula.title }}"</h2>
+<ul>
+    {% for comentario in comentarios %}
+    <li>{{ comentario.content }} - <em>{{ comentario.user.username }}</em></li>
+    {% endfor %}
+</ul>
+
+<h3>Agregar un comentario</h3>
+<form method="POST" action="{{ url_for('main.add_comment', movie_id=pelicula.id) }}">
+    <textarea name="content" rows="4" cols="50" required></textarea>
+    <br>
+    <button type="submit">Enviar Comentario</button>
+</form>
+{% endblock %}

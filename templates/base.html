@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}PopcornHour{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Inicio</a>
+        <a href="{{ url_for('auth.login_page') }}">Iniciar Sesión</a>
+        <a href="{{ url_for('auth.register') }}">Registrarse</a>
+        {% if user %}
+            <a href="{{ url_for('main.dashboard') }}">Mi Panel</a>
+            <form action="{{ url_for('auth.logout') }}" method="POST" style="display:inline;">
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+        {% endif %}
+    </nav>
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+
+

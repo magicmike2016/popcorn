@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Películas Calificadas{% endblock %}
+{% block content %}
+<h1>Películas Calificadas</h1>
+
+<ul>
+    {% for movie in movies %}
+        <li>
+            <strong>{{ movie.title }}</strong> ({{ movie.year }}) - 
+            <em>Calificación promedio: {{ movie.rating if movie.rating else 'N/A' }}</em>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('main.dashboard') }}">Volver al panel</a>
+{% endblock %}

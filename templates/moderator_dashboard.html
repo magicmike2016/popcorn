@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Panel de Moderador{% endblock %}
+{% block content %}
+<h1>Bienvenido, Moderador {{ user.username }}!</h1>
+
+<h2>Agregar una nueva película</h2>
+<form action="{{ url_for('main.add_movie') }}" method="POST">
+    <label for="title">Título:</label>
+    <input type="text" name="title" required>
+    <br>
+    <label for="description">Descripción:</label>
+    <textarea name="description" required></textarea>
+    <br>
+    <button type="submit">Agregar Película</button>
+</form>
+
+<h2>Películas disponibles:</h2>
+<ul>
+    {% for movie in movies %}
+        <li>
+            {{ movie.title }} ({{ movie.year }}) - Dirigida por {{ movie.director if movie.director else 'N/A' }}
+            <form action="{{ url_for('main.delete_movie', movie_id=movie.id) }}" method="POST" style="display:inline;">
+                <button type="submit">Eliminar</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>Calificar una película</h2>
+<ul>
+    {% for movie in movies %}
+        <li>
+            {{ movie.title }} ({{ movie.year }})
+            <form action="{{ url_for('main.rate_movie', movie_id=movie.id) }}" method="POST">
+                <label for="rating">Calificación:</label>
+                <input type="number" name="rating" min="1" max="10" required>
+                <br>
+                <label for="comment">Comentario:</label>
+                <textarea name="comment"></textarea>
+                <br>
+                <button type="submit">Enviar</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
